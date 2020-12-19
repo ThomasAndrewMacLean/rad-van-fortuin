@@ -5,6 +5,7 @@ const questionArray = [...question];
 
 const questionWrap = document.getElementById("questionWrap");
 const categoryWrap = document.getElementById("categoryWrap");
+const createButton = document.getElementById("create");
 
 categoryWrap.innerHTML = category;
 const boxes = Array(52).fill("xxx");
@@ -23,20 +24,19 @@ boxes.forEach((box) => {
   if (box === "xxx") {
     boxButton.classList.add("empty");
   }
-  if (box === "_") {
-    boxButton.classList.add("blank");
-    boxButton.addEventListener("click", (e) =>
-      e.target.classList.remove("blank")
-    );
+  if (box === " ") {
+    boxButton.classList.add("empty");
   }
 
-  if (box !== "xxx" && box !== "_") {
+  if (box !== "xxx" && box !== " ") {
     if (Math.random() < 0.3) {
       boxButton.innerHTML = box;
+      boxButton.classList.add("letter");
     } else {
       boxButton.innerHTML = box;
 
       boxButton.classList.add("blank");
+      boxButton.classList.add("letter");
       boxButton.addEventListener("click", (e) =>
         e.target.classList.remove("blank")
       );
@@ -44,3 +44,14 @@ boxes.forEach((box) => {
   }
   questionWrap.appendChild(boxButton);
 });
+
+const createNew = () => {
+  const newName = prompt("Geef het antwoord in: ");
+  urlParams.set("question", btoa(newName));
+
+  const newCat = prompt("Geef een categorie in: ");
+  urlParams.set("cat", btoa(newCat));
+
+  window.location.search = urlParams.toString();
+};
+createButton.addEventListener("click", createNew);
