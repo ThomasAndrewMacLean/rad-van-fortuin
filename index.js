@@ -8,6 +8,7 @@ const questionArray = [...question];
 const questionWrap = document.getElementById("questionWrap");
 const categoryWrap = document.getElementById("categoryWrap");
 const createButton = document.getElementById("create");
+const inputText = document.getElementById("inp");
 
 categoryWrap.innerHTML = category;
 const boxes = Array(52).fill("xxx");
@@ -31,18 +32,18 @@ boxes.forEach((box) => {
   }
 
   if (box !== "xxx" && box !== " ") {
-    if (Math.random() < 0.3) {
-      boxButton.innerHTML = box;
-      boxButton.classList.add("letter");
-    } else {
-      boxButton.innerHTML = box;
+    // if (Math.random() < 0.3) {
+    //   boxButton.innerHTML = box;
+    //   boxButton.classList.add("letter");
+    // } else {
+    boxButton.innerHTML = box;
 
-      boxButton.classList.add("blank");
-      boxButton.classList.add("letter");
-      boxButton.addEventListener("click", (e) =>
-        e.target.classList.remove("blank")
-      );
-    }
+    boxButton.classList.add("blank");
+    boxButton.classList.add("letter");
+    boxButton.addEventListener("dblclick", (e) =>
+      e.target.classList.remove("blank")
+    );
+    // }
   }
   questionWrap.appendChild(boxButton);
 });
@@ -57,3 +58,15 @@ const createNew = () => {
   window.location.search = urlParams.toString();
 };
 createButton.addEventListener("click", createNew);
+
+const checkLetters = (e) => {
+  console.log(e.target.value);
+  const letter = e.target.value[e.target.value.length - 1];
+  document.querySelectorAll(".blank").forEach((box) => {
+    if (box.innerHTML === letter) {
+      box.classList.remove("blank");
+    }
+  });
+};
+
+inputText.addEventListener("keyup", checkLetters);
