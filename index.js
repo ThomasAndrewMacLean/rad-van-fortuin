@@ -15,7 +15,7 @@ const boxes = Array(52).fill("xxx");
 
 let beginIndex = Math.floor(52 / 2 - questionArray.length / 2);
 if (questionArray.length < 13) {
-  beginIndex = 13 + 6 - questionArray.length / 2;
+  beginIndex = Math.floor(13 + 6 - questionArray.length / 2);
 }
 
 questionArray.forEach((letter, index) => {
@@ -60,7 +60,6 @@ const createNew = () => {
 createButton.addEventListener("click", createNew);
 
 const checkLetters = (e) => {
-  console.log(e.target.value);
   const letter = e.target.value[e.target.value.length - 1];
   document.querySelectorAll(".blank").forEach((box) => {
     if (box.innerHTML === letter) {
