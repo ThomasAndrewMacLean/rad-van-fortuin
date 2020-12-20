@@ -50,12 +50,14 @@ boxes.forEach((box) => {
 
 const createNew = () => {
   const newName = prompt("Geef het antwoord in: ");
-  urlParams.set("question", btoa(newName));
+  if (newName) {
+    urlParams.set("question", btoa(newName));
 
-  const newCat = prompt("Geef een categorie in: ");
-  urlParams.set("cat", btoa(newCat));
+    const newCat = prompt("Geef een categorie in: ");
+    urlParams.set("cat", btoa(newCat || " "));
 
-  window.location.search = urlParams.toString();
+    window.location.search = urlParams.toString();
+  }
 };
 createButton.addEventListener("click", createNew);
 
