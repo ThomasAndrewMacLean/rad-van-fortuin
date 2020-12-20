@@ -1,6 +1,8 @@
 const urlParams = new URLSearchParams(window.location.search);
-const question = atob(urlParams.get("question"));
-const category = atob(urlParams.get("cat"));
+const question = urlParams.get("question")
+  ? atob(urlParams.get("question"))
+  : "rad van fortuin";
+const category = urlParams.get("cat") ? atob(urlParams.get("cat")) : "spel";
 const questionArray = [...question];
 
 const questionWrap = document.getElementById("questionWrap");
