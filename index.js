@@ -64,7 +64,7 @@ createButton.addEventListener("click", createNew);
 const checkLetters = (e) => {
   const letter = e.target.value[e.target.value.length - 1];
   document.querySelectorAll(".blank").forEach((box) => {
-    if (box.innerHTML === letter) {
+    if (box.innerHTML.toLowerCase() === letter.toLowerCase()) {
       box.classList.remove("blank");
     }
   });
