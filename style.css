@@ -161,3 +161,9 @@ footer a {
 #inp:focus {
   box-shadow: 0px 1px 5px 1px #00000075, inset 0px 0px 7px 0px #a832c3;
 }
+
+@media only screen and (max-width: 700px) {
+  #inp {
+    bottom: -8%;
+  }
+}
